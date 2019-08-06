@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      #      uri: ${DB_URI:mongodb://root:santex1017@localhost:27017/customersdb?authSource=admin&authMechanism=SCRAM-SHA-1}
+      uri: mongodb://${username:root}:${password:santex1017}@${host:localhost}:${port:27017}/${db:customersdb}?authSource=admin&authMechanism=SCRAM-SHA-1
+logging:
+  level:
+    dev.sumana: DEBUG
+
+  

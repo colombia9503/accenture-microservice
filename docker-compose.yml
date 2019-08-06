@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    networks:
+      - mynetwrk
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: santex1017
+      MONGO_INITDB_DATABASE: customerdb
+    ports:
+      - 27017:27017
+    volumes:
+      #se setea el volumen para hacer backup sobre los datos de db (es opcional)
+      - /mymongo/data/db:/data/db
+  accenture-microservice:
+    build: .
+    depends_on:
+      - mongo
+    networks:
+      - mynetwrk
+    environment:
+      username: root
+      password: santex1017
+      host: mongo
+      port: 27017
+      db: customerdb
+    ports:
+      - 8080-8090:8080
+networks:
+  mynetwrk:
+    external: true
+
