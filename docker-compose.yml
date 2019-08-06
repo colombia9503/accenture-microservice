@@ -31,5 +31,6 @@ services:
       - 8080-8090:8080
 networks:
   mynetwrk:
-    external: true
+    driver: bridge
+#    external: true
 
